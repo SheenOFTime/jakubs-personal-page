@@ -1,15 +1,16 @@
 // src/app/auth/odhlasenie/page.tsx
 
 
-import Typography from '@mui/material/Typography';
+import { signOut } from "next-auth/react";
+import Button from "@mui/material/Button";
 
-export const metadata = { title: "Odhlásenie | ZoškaSnap" };
-
-export default function SignOut() {
-
+export default function Odhlasenie() {
   return (
-
-      <Typography> Odhlásenie </Typography>
-
+    <div>
+      <h1>Odhlásenie</h1>
+      <Button variant="contained" color="secondary" onClick={() => signOut()}>
+        Sign Out
+      </Button>
+    </div>
   );
 }
