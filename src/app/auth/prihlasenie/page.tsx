@@ -1,12 +1,8 @@
-// src/app/auth/prihlasenie/page.tsx
-
 'use client';
 import { signIn } from 'next-auth/react';
-//import { useRouter } from 'next/navigation';
+import Link from 'next/link'; // Import Link from Next.js
 
 export default function LoginPage() {
-  //const router = useRouter();
-
   const handleGoogleSignIn = async () => {
     await signIn('google', { callbackUrl: '/' });
   };
@@ -14,7 +10,15 @@ export default function LoginPage() {
   return (
     <div style={{ padding: '50px', textAlign: 'center' }}>
       <h2>Login</h2>
-      <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      <button onClick={handleGoogleSignIn} style={{ marginBottom: '20px' }}>
+        Sign in with Google
+      </button>
+      <p>
+        Nemáte účet?{' '}
+        <Link href="/auth/registracia" style={{ color: '#0070f3', textDecoration: 'underline' }}>
+          Registruj sa
+        </Link>
+      </p>
     </div>
   );
 }

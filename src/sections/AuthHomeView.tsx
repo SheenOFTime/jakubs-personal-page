@@ -1,26 +1,22 @@
 // src/sections/AuthHomeView.tsx
 
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-// import Box from "@mui/material/Box";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../app/api/auth/[...nextauth]/authOptions";
+import { redirect } from "next/navigation"; // Import redirect helper if using Next.js
+import NonAuthHomeView from "../sections/NonAuthHomeView";
 
-import { Session } from "next-auth";
+export const metadata = { title: "Domov | ZoškaSnap" };
 
-export default function AuthHomeView({ session }: { session: Session }) {
+export default async function HomePage() {
+  // Fetch the session on the server
+  const session = await getServerSession(authOptions);
 
-  return (
-    <Container>
-      <Typography> Domovská stránka - prihlásený user</Typography>
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        Vitajte, {session?.user?.name || "užívateľ"}!
-      </Typography>
+  // If the user is authenticated, redirect to the Prispevok page
+  if (session) {
+    // Redirect to Prispevok if authenticated
+    redirect("/prispevok");
+  }
 
-
-      {/* <Box sx={{ mt: 2 }}>
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-      </Box> */}
-    </Container>
-  );
+  // If the user is unauthenticated, show the unauthenticated homepage
+  return <NonAuthHomeView />;
 }
-
-
