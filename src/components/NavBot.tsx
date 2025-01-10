@@ -38,7 +38,7 @@ export default function NavBot() {
       icon: session?.user?.image ? <Avatar src={session.user.image} alt="Profile" /> : <PersonIcon />,
       path: '/profil',
     },
-    { label: 'Odhlásiť', icon: <LogoutIcon />, path: '//odhlasenie' },
+    { label: 'Odhlásiť', icon: <LogoutIcon />, path: '/odhlasenie' },
   ];
 
   const handleNavigation = (event: React.SyntheticEvent, newValue: number) => {
